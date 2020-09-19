@@ -5,15 +5,15 @@ let sanitizeHTML = require('sanitize-html')
 let app = express();
 let db;
 
-let port = process.env.PORT;
-if (port == null || port == "") port = 3000;
+// let port = process.env.PORT;
+// if (port == null || port == "") port = 3000;
 
 app.use(express.static('public'));
 
 let connectionString = 'mongodb+srv://admin:adminTorres@cluster0.4fjeg.mongodb.net/TodoApp?retryWrites=true&w=majority';
 mongodb.connect(connectionString, {useNewUrlParser: true, useUnifiedTopology: true}, (err, client) => {
     db = client.db();
-    app.listen(3000)
+    app.listen(process.env.PORT || 3000);
 });
 
 app.use(express.json());
